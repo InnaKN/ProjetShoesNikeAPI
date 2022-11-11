@@ -1,14 +1,15 @@
 import crmController from '../controllers/crmController'
 
 const routes = (app)=>{
-    app.route('/api/shoes/:pageNumber')
+    app.route('/api/shoes')
         .get(crmController.getShoes)
-    /* app.route('/book/all')
-        .get(crmController.getAllBooks)
-    app.route('/book/:bookTitle')
-        .get(crmController.getBook)
-        .put(crmController.changeBook)
-        .delete(crmController.deleteBook) */
+    app.route('/api/shoes/:idSoulier')
+        .get(crmController.getShoeById)
+    app.route('/api/search/:nomSoulier')
+        .get(crmController.getShoesByName)
+    app.route('/api/reviews/:idSoulier')
+        .get(crmController.getReviewsByShoeId)
+    
 }
 
 export default routes;
