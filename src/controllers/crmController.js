@@ -6,13 +6,19 @@ const Shoe = mongoose.model('Shoe',ShoeSchema);
 const itemsPerPage = 20;
 
 const getShoes=(req,res)=>{
-  const pageNumber = req.query.pageNumber || 1;
+  let pageNumber = req.query.pageNumber || 1;
+  const titlePattern = req.query.pattern || '';
   let count=0;
-  Shoe.count()
+  Shoe.count({title:{$regex: '(.*)'+titlePattern+'(.*)'}})
     .then(data => {
-      console.log('COUNT',data)
+      console.log('COUNT',data);
       count =data;
-      Shoe.find().skip((pageNumber-1)*itemsPerPage).limit(itemsPerPage)
+      if(pageNumber&&(count/itemsPerPage)<=pageNumber){
+        pageNumber=Math.ceil(count/itemsPerPage) || 1;
+      }
+      Shoe.find({title:{$regex: '(.*)'+titlePattern+'(.*)'}})
+          .skip((pageNumber-1)*itemsPerPage)
+          .limit(itemsPerPage)
       .then(data => {
         res.send({
           shoes:data,
@@ -21,7 +27,7 @@ const getShoes=(req,res)=>{
         });
       })
       .catch(err => {
-        res.send(500).send({
+        res.sendStatus(500).send({
           message:
             err.message || "Shoes not found"
         });
@@ -34,8 +40,6 @@ const getShoes=(req,res)=>{
           err.message || "Shoes not found"
       });
     });
-
-    
 }
 
 const getShoeById=(req,res)=>{
