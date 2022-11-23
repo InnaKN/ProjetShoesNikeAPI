@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import {ShoeSchema} from '../models/crmModel'
+import {ShoeSchema} from '../models/crmModel.js'
 
 const Shoe = mongoose.model('Shoe',ShoeSchema);
 
@@ -85,10 +85,10 @@ const getReviewsByShoeId=(req,res)=>{
       });
     });
 }
-module.exports = {
+export default {
   getShoes,
   getShoeById,
   getReviewsByShoeId,
   getShoesByName
 
-}
+};

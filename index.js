@@ -2,8 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import mongoose from "mongoose";
-
-import routes from './src/routes/crmRoutes'
+import routes from './src/routes/crmRoutes.js';
 
 
 const app = express();
@@ -32,3 +31,6 @@ mongoose.connect('mongodb://localhost:27017/shoes',{
 app.listen(PORT, () => 
   console.log(`Your server is running on port ${PORT}`)
 );
+
+
+export default app

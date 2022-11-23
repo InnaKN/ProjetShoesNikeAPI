@@ -1,4 +1,4 @@
-import crmController from '../controllers/crmController'
+import crmController from '../controllers/crmController.js'
 
 const routes = (app)=>{
     app.route('/api/shoes')
