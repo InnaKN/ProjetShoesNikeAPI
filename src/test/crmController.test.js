@@ -15,7 +15,7 @@ describe('GET for /api/shoes', () => {
 describe('GET for /api/shoes/:idSoulier', () => {
 
     it('Test for GET Shoe by ID' , async () => {
-        const idForTest = "618ab06cc11e54d0319dde6f"; // hardcoded ID taken from DataBase
+      const idForTest = "618ab06cc11e54d0319dde6f"; // hardcoded ID taken from DataBase
       const response = await request(app)
         .get('/api/shoes/'+idForTest);
         expect(response.statusCode).to.equal(200);
@@ -36,7 +36,6 @@ describe('GET for /api/shoes/:idSoulier', () => {
   });
 
   describe('GET for /api/reviews/:idSoulier', () => {
-
     it('Test for GET Shoe reviews' , async () => {
         const idForTest = "618ab06cc11e54d0319dde6f"; // hardcoded ID taken from DataBase
       const response = await request(app)
@@ -44,4 +43,3 @@ describe('GET for /api/shoes/:idSoulier', () => {
         expect(response.statusCode).to.equal(200);
       });
   });
-''
